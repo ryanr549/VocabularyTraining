@@ -16,7 +16,9 @@ class TrainingPlan
   end
 
   def write
+    
     head = @template[..@template.index("\n\\end{multicols}")]
+    head.insert(@template.index("\n\\input{cheatsheet-template.tex}"), "\n\\date{"+`date +%F`.chomp+"}")
     @f.puts head
     for group in 1..@groups
       print "Group name: ".ljust(20)
